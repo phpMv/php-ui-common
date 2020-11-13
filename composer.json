@@ -12,7 +12,6 @@
     "require": {
         "php": "^7.4"
     },
-    "suggest": [],
     "autoload": {
         "psr-4": {
             "PHPMV\\": "src/PHPMV/"
