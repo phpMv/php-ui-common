@@ -37,7 +37,7 @@ class JsUtils {
 		if ($script == null) {
 			return "";
 		}
-		if (\substr($script, 0, strlen("<script>")) === "<script>") {
+		if (\substr($script, 0, strlen("<script>")) !== "<script>") {
 			$script = "<script>$script</script>";
 		}
 		return $script;
