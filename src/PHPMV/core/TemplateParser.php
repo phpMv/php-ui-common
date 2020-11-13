@@ -66,7 +66,7 @@ class TemplateParser {
 	public function parse(array $values): string {
 		$result = $this->templateContent;
 		foreach ($values as $k => $v) {
-			$result = \str_replace(self::OPEN_TAG . $k . self::CLOSE_TAG, $v);
+			$result = \str_replace(self::OPEN_TAG . $k . self::CLOSE_TAG, $v, $result);
 		}
 		return $result;
 	}
