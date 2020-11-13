@@ -12,58 +12,54 @@ class TemplateParserTest extends \Codeception\Test\Unit {
 	 */
 	private $templateParser;
 
-	protected function _before() {}
+	protected function _before() {
+		TemplateParser::setTemplateDirectory(dirname(__FILE__) . '/../files/templates/');
+		$this->templateParser = new TemplateParser();
+	}
 
-	protected function _after() {}
+	protected function _after() {
+		$this->templateParser = null;
+	}
 
 	/**
 	 * Tests TemplateParser->loadTemplatefile()
 	 */
 	public function testLoadTemplatefile() {
-		// TODO Auto-generated TemplateParserTest->testLoadTemplatefile()
-		$this->markTestIncomplete("loadTemplatefile test not implemented");
-
-		$this->templateParser->loadTemplatefile(/* parameters */);
+		$this->templateParser->loadTemplatefile('renderComponent');
+		$this->assertContains('domContainer', $this->templateParser->getTemplateContent());
 	}
 
 	/**
 	 * Tests TemplateParser->parse()
 	 */
 	public function testParse() {
-		// TODO Auto-generated TemplateParserTest->testParse()
-		$this->markTestIncomplete("parse test not implemented");
+		$this->templateParser->loadTemplatefile('renderComponent');
 
-		$this->templateParser->parse(/* parameters */);
+		$res = $this->templateParser->parse([
+			'selector' => 'id',
+			'component' => 'myCompo'
+		]);
+		$this->assertEquals("const domContainer = document.querySelector('id');
+ReactDOM.render(e(myCompo), domContainer);", $res);
 	}
 
 	/**
 	 * Tests TemplateParser->loadAndParse()
 	 */
 	public function testLoadAndParse() {
-		// TODO Auto-generated TemplateParserTest->testLoadAndParse()
-		$this->markTestIncomplete("loadAndParse test not implemented");
-
-		$this->templateParser->loadAndParse(/* parameters */);
+		$res = $this->templateParser->loadAndParse('renderComponent', [
+			'selector' => 'id',
+			'component' => 'myCompo'
+		]);
+		$this->assertEquals("const domContainer = document.querySelector('id');
+ReactDOM.render(e(myCompo), domContainer);", $res);
 	}
 
 	/**
 	 * Tests TemplateParser::getTemplateDirectory()
 	 */
 	public function testGetTemplateDirectory() {
-		// TODO Auto-generated TemplateParserTest::testGetTemplateDirectory()
-		$this->markTestIncomplete("getTemplateDirectory test not implemented");
-
-		TemplateParser::getTemplateDirectory(/* parameters */);
-	}
-
-	/**
-	 * Tests TemplateParser::setTemplateDirectory()
-	 */
-	public function testSetTemplateDirectory() {
-		// TODO Auto-generated TemplateParserTest::testSetTemplateDirectory()
-		$this->markTestIncomplete("setTemplateDirectory test not implemented");
-
-		TemplateParser::setTemplateDirectory(/* parameters */);
+		$this->assertEquals(dirname(__FILE__) . '/../files/templates/', TemplateParser::getTemplateDirectory());
 	}
 }
 

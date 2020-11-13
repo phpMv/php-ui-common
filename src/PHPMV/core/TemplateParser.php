@@ -100,5 +100,13 @@ class TemplateParser {
 	public static function setTemplateDirectory(string $templateDirectory): void {
 		self::$templateDirectory = $templateDirectory;
 	}
+
+	/**
+	 *
+	 * @return string
+	 */
+	public function getTemplateContent() {
+		return $this->templateContent;
+	}
 }
 
