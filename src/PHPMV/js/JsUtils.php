@@ -15,16 +15,18 @@ class JsUtils {
 	/**
 	 * Returns a JSON string from an object.
 	 *
-	 * @param object $object
+	 * @param mixed $object
 	 * @return string
 	 */
-	public static function objectToJSON(object $object): string {
-		if (\method_exists($object, 'toArray')) {
-			$array = $object->toArray();
-		} else {
-			$array = (array) $object;
+	public static function objectToJSON($object): string {
+		if (\is_object($object)) {
+			if (\method_exists($object, 'toArray')) {
+				$object = $object->toArray();
+			} else {
+				$object = (array) $object;
+			}
 		}
-		return \json_encode($array, \JSON_PRETTY_PRINT | \JSON_NUMERIC_CHECK);
+		return \json_encode($object, \JSON_PRETTY_PRINT | \JSON_NUMERIC_CHECK);
 	}
 
 	/**
