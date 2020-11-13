@@ -40,7 +40,7 @@ class JsUtils {
 		if (\substr($script, 0, strlen("<script>")) === "<script>") {
 			$script = "<script>$script</script>";
 		}
-		return script;
+		return $script;
 	}
 }
 
