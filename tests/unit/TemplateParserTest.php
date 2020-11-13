@@ -26,7 +26,7 @@ class TemplateParserTest extends \Codeception\Test\Unit {
 	 */
 	public function testLoadTemplatefile() {
 		$this->templateParser->loadTemplatefile('renderComponent');
-		$this->assertContains('domContainer', $this->templateParser->getTemplateContent());
+		$this->assertStringContainsString('domContainer', $this->templateParser->getTemplateContent());
 	}
 
 	/**
