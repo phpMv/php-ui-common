@@ -16,10 +16,10 @@ class JavascriptUtilsTest extends \Codeception\Test\Unit {
 		$c1 = new TestClass1();
 		$c1->id = 11;
 		$c1->name = 'Foo';
-		$this->assertEquals(json_decode('{"id":11,"name":"Foo"}'), json_decode(JavascriptUtils::objectToJSON($c1)));
+		$this->assertEquals(json_decode('{"id":11,"name":"Foo"}'), json_decode(JavascriptUtils::toJSON($c1)));
 
 		$c2 = new TestClass2(11, "Bar");
-		$this->assertEquals(json_decode('{"id":11,"name":"Bar"}'), json_decode(JavascriptUtils::objectToJSON($c2)));
+		$this->assertEquals(json_decode('{"id":11,"name":"Bar"}'), json_decode(JavascriptUtils::toJSON($c2)));
 	}
 
 	/**
