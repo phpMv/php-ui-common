@@ -42,8 +42,6 @@ class JavascriptUtils {
 				$v = self::toJSON($v);
 			} elseif (\is_bool($v)) {
 				$v = ($v) ? 'true' : 'false';
-			} elseif (\is_scalar($v)) {
-				$v = '"' . $v . '"';
 			}
 			$res[] = "$k: $v";
 		}
