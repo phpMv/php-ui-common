@@ -23,6 +23,24 @@ class JavascriptUtilsTest extends \Codeception\Test\Unit {
 	}
 
 	/**
+	 * Tests JavascriptUtils::objectToJSON()
+	 */
+	public function testArrayToJsObject() {
+		$c1 = new TestClass1();
+		$c1->id = 11;
+		$c1->name = 'Foo';
+		$this->assertEquals(json_decode('{"id":11,"name":"Foo"}'), json_decode(JavascriptUtils::toJSON($c1)));
+
+		$array = [
+			"bool" => true,
+			"int" => 1,
+			"object" => $c1,
+			"string" => '"s"'
+		];
+		$this->assertEquals('{bool: true,int: 1,object: {"id":11,"name":"Bar"},string:"s"}', JavascriptUtils::arrayToJsObject($array));
+	}
+
+	/**
 	 * Tests JavascriptUtils::wrapScript()
 	 */
 	public function testWrapScript() {

@@ -30,6 +30,23 @@ class JavascriptUtils {
 	}
 
 	/**
+	 * Return a javascript object from a php associative array.
+	 *
+	 * @param array $array
+	 * @return string
+	 */
+	public static function arrayToJsObject(array $array): string {
+		$res = [];
+		foreach ($array as $k => $v) {
+			if (\is_object($v) || \is_array($v)) {
+				$v = self::toJSON($v);
+			}
+			$res[] = "$k: $v";
+		}
+		return '{' . \implode(',', $res) . '}';
+	}
+
+	/**
 	 * Add script tags to a javascript code.
 	 *
 	 * @param string $script
