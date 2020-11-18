@@ -9,6 +9,10 @@ include_once dirname(__FILE__) . '/../files/classes/TestClass2.php';
  */
 class JavascriptUtilsTest extends \Codeception\Test\Unit {
 
+	protected function assertEqualsIgnoreNewLines($expected, $actual) {
+		$this->assertEquals(trim(preg_replace('/\R+/', '', $expected)), trim(preg_replace('/\R+/', '', $actual)));
+	}
+
 	/**
 	 * Tests JavascriptUtils::objectToJSON()
 	 */
@@ -37,7 +41,7 @@ class JavascriptUtilsTest extends \Codeception\Test\Unit {
 			"object" => $c1,
 			"string" => '"s"'
 		];
-		$this->assertEquals('{bool: true,int: 1,object: {"id":11,"name":"Bar"},string:"s"}', JavascriptUtils::arrayToJsObject($array));
+		$this->assertEqualsIgnoreNewLines('{bool: true,int: 1,object: {"id":11,"name":"Bar"},string:"s"}', JavascriptUtils::arrayToJsObject($array));
 	}
 
 	/**
