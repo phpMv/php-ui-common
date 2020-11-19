@@ -52,6 +52,10 @@ class JavascriptUtilsTest extends \Codeception\Test\Unit {
 		$this->assertEquals("<script>alert('test');</script>", JavascriptUtils::wrapScript($s1));
 		$s2 = "<script>alert('test');</script>";
 		$this->assertEquals($s2, JavascriptUtils::wrapScript($s2));
+		$s3 = '';
+		$this->assertEquals($s3, JavascriptUtils::wrapScript($s3));
+		$s4 = null;
+		$this->assertEquals('', JavascriptUtils::wrapScript($s3));
 	}
 }
 
