@@ -39,7 +39,7 @@ class JavascriptUtilsTest extends \Codeception\Test\Unit {
 			"bool" => true,
 			"int" => 1,
 			"object" => $c1,
-			"string" => '"s"'
+			"string" => 's'
 		];
 		$this->assertEqualsIgnoreNewLines('{bool: true,int: 1,object: {    "id": 11,    "name": "Foo"},string: "s"}', JavascriptUtils::arrayToJsObject($array));
 	}
