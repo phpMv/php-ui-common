@@ -80,13 +80,13 @@ class JavascriptUtils {
 
 	public static function generateFunction(string $body, array $params = [], bool $needRemoveQuote = true): string {
 		if ($needRemoveQuote) {
-			return self::removeQuotes("function(" . implode(",", $params) . "){" . $body . "}");
+			return self::removeQuotes("function(" . \implode(",", $params) . "){ $body }");
 		}
-		return "function(" . implode(",", $params) . "){" . $body . "}";
+		return "function(" . \implode(",", $params) . "){ $body }";
 	}
 
 	public static function declareVariable(string $type, string $name, $value, bool $lineBreak = true): string {
-		$declaration = $type . " " . $name . " = " . $value . ";";
+		$declaration = "$type $name = $value ;";
 		if ($lineBreak) $declaration .= PHP_EOL;
 		return $declaration;
 	}
